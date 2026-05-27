@@ -9,14 +9,10 @@ blog_manager = BlogPostManagerJSON()
 def hello_world():
     return 'Hello, World!'
 
-@app.route('/reset')
-def reset():
-    blog_manager.reset()
-    return redirect(url_for('index'))
-
 @app.route("/")
 def index():
-    blog_posts = blog_manager.read_all_posts()
+    search_term = request.args.get('s', '')
+    blog_posts = blog_manager.filter_posts(search_term)
     return render_template("index.html", blog_posts=blog_posts, title="Posts")
 
 
@@ -43,7 +39,7 @@ def delete(post_id):
 
 @app.route('/update/<int:post_id>', methods=['GET', 'POST'])
 def update(post_id):
-    post = blog_manager.read_post(post_id)
+    post = blog_manager.get_post(post_id)
     if post is None:
         return "Post not found", 404
 
@@ -60,6 +56,22 @@ def update(post_id):
         return redirect(url_for('index'))
 
     return render_template('update.html', post=post, title="Update Post")
+
+
+@app.route('/reset')
+def reset():
+    blog_manager.reset()
+    return redirect(url_for('index'))
+
+
+@app.route('/reset_confirm')
+def reset_confirm():
+    return render_template("reset_confirm.html", title="RESET")
+
+@app.route('/like/<int:post_id>')
+def like(post_id):
+    blog_manager.add_like(post_id)
+    return redirect(url_for('index'))
 
 
 if __name__ == '__main__':

@@ -8,15 +8,31 @@
 </head>
 <body>
     <nav class="menu">
-        <div>
-            <a href="{{ url_for('index') }}">Home</a>
-            <a href="{{ url_for('add') }}">Add Post</a>
+        <div class="menu-left">
+            <input type="checkbox" id="menu-toggle" class="menu-toggle">
+            <label for="menu-toggle" class="hamburger">
+                ☰
+            </label>
+            <div class="menu-links">
+                <a href="{{ url_for('index') }}">Home</a>
+                <a href="{{ url_for('add') }}">Add Post</a>
+                <a href="{{ url_for('reset_confirm') }}">Reset</a>
+            </div>
         </div>
-        <div>
-            <a href="{{ url_for('reset') }}">Reset</a>
+        <div class="menu-right">
+            <form class="search-form"
+                  action="{{ url_for('index') }}"
+                  method="GET">
+                <input type="text"
+                       name="s"
+                       placeholder="Search...">
+                <button type="submit">
+                    Search
+                </button>
+            </form>
         </div>
     </nav>
-    <div class="container">
+<div class="container">
         {% block content %}{% endblock %}
     </div>
 </body>

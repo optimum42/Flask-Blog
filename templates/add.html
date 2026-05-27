@@ -2,7 +2,7 @@
 {% block content %}
 
     <h1>Create a new Blogpost</h1>
-    <form class="form" method="POST" action="/add">
+    <form class="form" method="POST" action="{{ url_for('add') }}">
         <div class="form-group">
             <label for="author">Author</label><br>
             <input

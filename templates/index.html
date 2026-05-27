@@ -8,16 +8,23 @@
             <p><em>Written by: {{ post.author }}</em></p>
             <p>{{ post.content }}</p>
             <div class="button-container">
-                <a href="/update/{{ post.id }}">
+                <a href="{{ url_for('like', post_id=post.id) }}">
+                    <button class="like-button" type="button">
+                        Like ({{ post.likes }})
+                    </button>
+                </a>
+                <a href="{{ url_for('update', post_id=post.id) }}">
                     <button class="update-button" type="button">
                         Update
                     </button>
                 </a>
-                <a href="/delete/{{ post.id }}">
+                <a href="{{ url_for('delete', post_id=post.id) }}">
                     <button class="delete-button" type="button">
                         Delete
                     </button>
                 </a>
+
+
             </div>
         </div>
     {% endfor %}

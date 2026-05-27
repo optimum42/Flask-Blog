@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    <h1>Delete All Posts?</h1>
+    <p>
+        This function deletes all posts and resets the blog to default posts. Are you sure you want to delete all posts?
+    </p>
+    <form action="{{ url_for('reset') }}">
+        <button class="reset-button" type="submit">
+            Yes, delete and reset
+        </button>
+    </form>
+    <br />
+    <a href="{{ url_for('index') }}">
+        Cancel
+    </a>
+
+{% endblock %}

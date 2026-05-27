@@ -67,11 +67,17 @@ BLOG_POSTS = [
 
 
 def load_json(path):
+    """
+    The function loads a JSON file from the specified path.
+    """
     with open(path, 'r') as f:
         return json.load(f)
 
 
 def save_json(path, data):
+    """
+    This function saves a JSON file to the specified path.
+    """
     with open(path, 'w') as f:
         json.dump(
             data,

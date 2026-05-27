@@ -2,10 +2,16 @@ import json
 from abc import ABC, abstractmethod
 from pathlib import Path
 from config import PATH
+from json_storage import BLOG_POSTS
+
 
 class BlogPostManager(ABC):
     def __init__(self):
         self.blog_posts = self.load_posts()
+
+    @abstractmethod
+    def reset(self):
+        pass
 
     @abstractmethod
     def load_posts(self):
@@ -77,6 +83,10 @@ class BlogPostManagerJSON(BlogPostManager):
         self.file_path = Path(file_path)
         super().__init__()
 
+    def reset(self):
+        self.blog_posts = [post for post in BLOG_POSTS]
+        self.save_posts()
+
     def load_posts(self):
         if not self.file_path.exists():
             return []
@@ -101,14 +111,17 @@ class BlogPostManagerJSON(BlogPostManager):
 def main():
     blog = BlogPostManagerJSON()
     blog.show_posts()
-
+    print()
     blog.add_post("John Doe", "First Post", "This is my first post.")
     blog.show_posts()
-
+    print()
     blog.update_post(1, title="Updated First Post")
     blog.show_posts()
-
+    print()
     blog.delete_post(1)
+    blog.show_posts()
+    print()
+    blog.reset()
     blog.show_posts()
 
 

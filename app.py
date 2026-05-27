@@ -9,10 +9,15 @@ blog_manager = BlogPostManagerJSON()
 def hello_world():
     return 'Hello, World!'
 
+@app.route('/reset')
+def reset():
+    blog_manager.reset()
+    return redirect(url_for('index'))
+
 @app.route("/")
 def index():
     blog_posts = blog_manager.read_all_posts()
-    return render_template("index.html", blog_posts=blog_posts)
+    return render_template("index.html", blog_posts=blog_posts, title="Posts")
 
 
 @app.route('/add', methods=['GET', 'POST'])
@@ -27,7 +32,7 @@ def add():
             content=content
         )
         return redirect(url_for('index'))
-    return render_template('add.html')
+    return render_template('add.html', title="Add Post")
 
 
 @app.route('/delete/<int:post_id>')
@@ -54,7 +59,7 @@ def update(post_id):
         )
         return redirect(url_for('index'))
 
-    return render_template('update.html', post=post)
+    return render_template('update.html', post=post, title="Update Post")
 
 
 if __name__ == '__main__':

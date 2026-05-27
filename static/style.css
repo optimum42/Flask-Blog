@@ -1,13 +1,41 @@
+@import url("forms.css");
+
 body {
     font-family: Arial, sans-serif;
     background-color: #F5F5F5;
-    padding: 20px;
+    padding: 0;
+    margin: 0;
     color: #333;
 }
 
 h1 {
     text-align: center;
     color: #4F4F4F;
+}
+
+.menu {
+    color: #FFF;
+    background-color: #333;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.menu a {
+    color: #FFF;
+    text-decoration: none;
+    margin-right: 30px;
+}
+
+.menu a:hover {
+    text-decoration: underline;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
 }
 
 .post {
@@ -24,4 +52,26 @@ h1 {
 
 .post p {
     margin: 10px 0;
+}
+
+.button-container {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.update-button, .delete-button {
+    color: #FFF;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 4px;
+    margin-right: 10px;
+}
+
+.update-button {
+    background-color: #4CAF50;
+}
+
+.delete-button {
+    background-color: #F44336;
 }

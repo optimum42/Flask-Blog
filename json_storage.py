@@ -2,7 +2,7 @@ import json
 from config import PATH
 
 
-blog_posts = [
+BLOG_POSTS = [
     {
         "id": 1,
         "author": "Alice Smith",
@@ -82,9 +82,9 @@ def save_json(path, data):
 
 
 def main():
-    save_json(PATH, blog_posts)
-    block_posts = load_json(PATH)
-    for block_post in block_posts:
+    save_json(PATH, BLOG_POSTS)
+    blog_posts = load_json(PATH)
+    for block_post in blog_posts:
         print(block_post)
 
 
